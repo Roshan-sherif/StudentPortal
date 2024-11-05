@@ -4,8 +4,8 @@ import AttendanceCard from '../../Students/Home/Elements/AttendanceCard';
 import FeatureCard from '../../Students/Home/Elements/CardsMobile';
 import NewsFetcher from '../../Students/Home/Elements/NewsFetcher';
 import './Home.css';
-
-const API_KEY = 'b5726e1f423d5ff266c9ee38db4e3a11'; // Your GNews API key
+const API_KEY = "b5726e1f423d5ff266c9ee38db4e3a11";
+console.log(API_KEY)
 
 const Home = () => {
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
