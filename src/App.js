@@ -17,15 +17,19 @@ import CIA2 from './components/Students/Result/CIA_2/CIA_2';
 import ResultHome from './components/Students/Result/ResultHome/ResultHome';
 import UNIVERSITYRESULT from './components/Students/Result/UnivercityResult/UnivercityResult';
 
-// Import teacher components
+import AttendanceEntry from './components/Teachers/Attendance/AttendanceEntry';
 import TeacherNavbar from './components/Teachers/Home/Elements/Navbar';
 import TeachersSidebar from './components/Teachers/Home/Elements/Sidebar';
 import TeachersHome from './components/Teachers/Home/Home';
-
+import CIA1ENTRY from './components/Teachers/MarkEntry/CIA1_Entry/CIA1_Entry';
+import CIA2ENTRY from './components/Teachers/MarkEntry/CIA2_Entry/CIA2_Entry';
+import MarkEntryHome from './components/Teachers/MarkEntry/MarkEntryHome/MarkEntryHome';
+import AddStudentForm from './components/Teachers/StudentsList/AddStudent/AddStudent';
+import StudentList from './components/Teachers/StudentsList/StudentList';
+import TeacherTimetable from './components/Teachers/TimeTable/TimeTable';
 function App() {
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
-    const location = useLocation(); // Get the current location
-
+    const location = useLocation();
     const toggleSidebar = () => {
         setSidebarOpen((prev) => !prev);
     };
@@ -53,8 +57,16 @@ function App() {
                         <TeachersSidebar isOpen={sidebarOpen} />
                         <div className={`main-content ${sidebarOpen ? 'shift-right' : 'full-width'}`}>
                             <Routes>
+                                <Route path='/teachers/Attendance' element={<AttendanceEntry/>}/>
                                 <Route path="/teachers/" element={<TeachersHome />} />
+                                <Route path="/teachers/Students" element={<StudentList/>}/>
+                                <Route path='/teachers/mark entry' element={<MarkEntryHome/>}/>
+                                <Route path="/teachers/CIA-1" element={<CIA1ENTRY/>}/>
+                                <Route path="/teachers/CIA-2" element={<CIA2ENTRY/>}/>
+                                <Route path="/teachers/Teacher Time Table" element={<TeacherTimetable/>}/>
+                                <Route path="/teachers/add-student" element={<AddStudentForm/>}/>
 
+                              
                             </Routes>
                         </div>
                     </div>
