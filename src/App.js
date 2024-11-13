@@ -17,6 +17,7 @@ import CIA2 from './components/Students/Result/CIA_2/CIA_2';
 import ResultHome from './components/Students/Result/ResultHome/ResultHome';
 import UNIVERSITYRESULT from './components/Students/Result/UnivercityResult/UnivercityResult';
 
+import StudentsLogin from './components/Students/StudentsLogin/StudentsLogin';
 import AttendanceEntry from './components/Teachers/Attendance/AttendanceEntry';
 import TeacherNavbar from './components/Teachers/Home/Elements/Navbar';
 import TeachersSidebar from './components/Teachers/Home/Elements/Sidebar';
@@ -47,9 +48,9 @@ function App() {
 
     // Determine if the current route is for teachers
     const isTeacherRoute = location.pathname.startsWith('/teachers');
-
+    const isLogin = location.pathname.startsWith('/login');
     return (
-        <div className="app-container">
+        <div className="app-container" >
             {isTeacherRoute ? (
                 <>
                     <TeacherNavbar toggleSidebar={toggleSidebar} />
@@ -57,43 +58,58 @@ function App() {
                         <TeachersSidebar isOpen={sidebarOpen} />
                         <div className={`main-content ${sidebarOpen ? 'shift-right' : 'full-width'}`}>
                             <Routes>
-                                <Route path='/teachers/Attendance' element={<AttendanceEntry/>}/>
+                                <Route path='/teachers/Attendance' element={<AttendanceEntry />} />
                                 <Route path="/teachers/" element={<TeachersHome />} />
-                                <Route path="/teachers/Students" element={<StudentList/>}/>
-                                <Route path='/teachers/mark entry' element={<MarkEntryHome/>}/>
-                                <Route path="/teachers/CIA-1" element={<CIA1ENTRY/>}/>
-                                <Route path="/teachers/CIA-2" element={<CIA2ENTRY/>}/>
-                                <Route path="/teachers/Teacher Time Table" element={<TeacherTimetable/>}/>
-                                <Route path="/teachers/add-student" element={<AddStudentForm/>}/>
+                                <Route path="/teachers/Students" element={<StudentList />} />
+                                <Route path='/teachers/mark entry' element={<MarkEntryHome />} />
+                                <Route path="/teachers/CIA-1" element={<CIA1ENTRY />} />
+                                <Route path="/teachers/CIA-2" element={<CIA2ENTRY />} />
+                                <Route path="/teachers/Teacher Time Table" element={<TeacherTimetable />} />
+                                <Route path="/teachers/add-student" element={<AddStudentForm />} />
 
-                              
                             </Routes>
                         </div>
                     </div>
                 </>
-            ) : (
-                <>
-                    <Navbar toggleSidebar={toggleSidebar} />
-                    <div className="content-wrapper">
-                        <Sidebar isOpen={sidebarOpen} />
-                        <div className={`main-content ${sidebarOpen ? 'shift-right' : 'full-width'}`}>
+            )
+                : isLogin ? (
+                    <>
+                        <div>
                             <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/profile" element={<Profile />} />
-                                <Route path="/cgpa" element={<CGPA />} />
-                                <Route path="/result" element={<ResultHome />} />
-                                <Route path="/CIA-1" element={<CIA1 />} />
-                                <Route path="/CIA-2" element={<CIA2 />} />
-                                <Route path="/UNIVERSITY RESULT" element={<UNIVERSITYRESULT />} />
-                                <Route path="/Fees" element={<FeesHome />} />
-                                <Route path="/due fees" element={<FeesDues />} />
-                                <Route path="/Pay fees" element={<PayFees />} />
-                                <Route path="/PROGRESS" element={<ProgressPage />} />
+                            <Route path="/login/students" element={<StudentsLogin />} />
+
                             </Routes>
+
                         </div>
-                    </div>
-                </>
-            )}
+                    </>
+                ):
+                    (
+                        <>
+                            <Navbar toggleSidebar={toggleSidebar} />
+                            <div className="content-wrapper">
+                                <Sidebar isOpen={sidebarOpen} />
+                                <div className={`main-content ${sidebarOpen ? 'shift-right' : 'full-width'}`}>
+                                    <Routes>
+                                        <Route path="/" element={<Home />} />
+                                        <Route path="/profile" element={<Profile />} />
+                                        <Route path="/cgpa" element={<CGPA />} />
+                                        <Route path="/result" element={<ResultHome />} />
+                                        <Route path="/CIA-1" element={<CIA1 />} />
+                                        <Route path="/CIA-2" element={<CIA2 />} />
+                                        <Route path="/UNIVERSITY RESULT" element={<UNIVERSITYRESULT />} />
+                                        <Route path="/Fees" element={<FeesHome />} />
+                                        <Route path="/due fees" element={<FeesDues />} />
+                                        <Route path="/Pay fees" element={<PayFees />} />
+                                        <Route path="/PROGRESS" element={<ProgressPage />} />
+
+                                    </Routes>
+                                </div>
+                            </div>
+                        </>
+                    )
+
+                
+            }
         </div>
     );
 }
