@@ -1,7 +1,7 @@
 import React from 'react';
-import './Navbar.css';
+import './Navabar.css';
 
-const TeacherNavbar = ({ toggleSidebar }) => {
+const ManagementNavbar = ({ toggleSidebar }) => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
@@ -17,4 +17,4 @@ const TeacherNavbar = ({ toggleSidebar }) => {
   );
 };
 
-export default TeacherNavbar;
+export default ManagementNavbar;

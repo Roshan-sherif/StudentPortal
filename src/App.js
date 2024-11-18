@@ -17,6 +17,11 @@ import CIA2 from './components/Students/Result/CIA_2/CIA_2';
 import ResultHome from './components/Students/Result/ResultHome/ResultHome';
 import UNIVERSITYRESULT from './components/Students/Result/UnivercityResult/UnivercityResult';
 
+import ManagementCard from './components/Management/Home/Elements/Cards';
+import ManagementNavbar from './components/Management/Home/Elements/Navbar';
+import ManagementSidebar from './components/Management/Home/Elements/Sidebar';
+import AddStudentFormMangement from './components/Management/StudentsList/AddStudent/AddStudent';
+import StudentListManagement from './components/Management/StudentsList/StudentList';
 import StudentsLogin from './components/Students/StudentsLogin/StudentsLogin';
 import AttendanceEntry from './components/Teachers/Attendance/AttendanceEntry';
 import TeacherNavbar from './components/Teachers/Home/Elements/Navbar';
@@ -49,6 +54,9 @@ function App() {
     // Determine if the current route is for teachers
     const isTeacherRoute = location.pathname.startsWith('/teachers');
     const isLogin = location.pathname.startsWith('/login');
+    const isManagement = location.pathname.startsWith('/management');
+
+
     return (
         <div className="app-container" >
             {isTeacherRoute ? (
@@ -77,8 +85,26 @@ function App() {
                         <div>
                             <Routes>
                             <Route path="/login/students" element={<StudentsLogin />} />
+                            </Routes>
+
+                        </div>
+                    </>
+                ):isManagement?(
+                    <>
+                        <div>
+                        <ManagementNavbar toggleSidebar={toggleSidebar} />
+                    <div className="content-wrapper">
+                        <ManagementSidebar isOpen={sidebarOpen} />
+                        <div className={`main-content ${sidebarOpen ? 'shift-right' : 'full-width'}`}>
+                            <Routes>
+                            <Route path="/management" element={<ManagementCard />} />
+                            <Route path="/management/Students" element={<StudentListManagement />} />
+                            <Route path="/management/add-student" element={<AddStudentFormMangement/>} />
+
 
                             </Routes>
+                        </div>
+                    </div>
 
                         </div>
                     </>
